@@ -4,6 +4,15 @@
 
 <definitions_variables>
 
+  <entry id="DOMAIN_DECOMP_TYPE">
+    <type>char</type>
+    <valid_values>round_robin, data_driven_partitioning, graph_partitioning, simple</valid_values>
+    <default_value>round_robin</default_value>
+    <group>case_comp</group>
+    <file>env_run.xml</file>
+    <desc>Specifies the method for decomposing CLM grids across processors.</desc>
+  </entry>
+
   <entry id="COMP_LND">
     <type>char</type>
     <valid_values>elm</valid_values>

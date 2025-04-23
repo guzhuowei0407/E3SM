@@ -54,6 +54,8 @@ def buildnml(case, caseroot, compname):
     run_refdate         = case.get_value("RUN_REFDATE")
     run_reftod          = case.get_value("RUN_REFTOD")
     casebuild		= case.get_value("CASEBUILD")
+    domain_decomp_type  = case.get_value("DOMAIN_DECOMP_TYPE")
+    decomp_nml_str      = "domain_decomp_type='{}' ".format(domain_decomp_type)
 
     elmconf_dir = os.path.join(casebuild, "elmconf")
 
@@ -188,7 +190,7 @@ def buildnml(case, caseroot, compname):
 
         sysmod =  "{}/components/elm/bld/build-namelist -infile {}/Buildconf/elmconf/namelist ".format(srcroot, caseroot)
         sysmod += " -csmdata {} -inputdata {}/Buildconf/elm.input_data_list {}".format(din_loc_root, caseroot, ignore)
-        sysmod += ' -namelist " &elm_inparm  start_ymd={} {} /"'.format(start_ymd, elm_namelist_opts)
+        sysmod += ' -namelist " &elm_inparm  start_ymd={} {} {} /"'.format(start_ymd, elm_namelist_opts, decomp_nml_str)
         sysmod += " {} {} -res {} {} -clm_start_type {}".format(usecase, glc_opts, resolution, clmusr, start_type)
         sysmod += " -envxml_dir {} -l_ncpl {} -r_ncpl {} -lnd_frac {}/{}".format(caseroot, lnd_ncpl, rof_ncpl, lnd_domain_path, lnd_domain_file)
         sysmod += " -glc_nec {} -co2_ppmv {} -co2_type {} ".format(glc_nec, ccsm_co2_ppmv, elm_co2_type)
